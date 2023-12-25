@@ -1,4 +1,4 @@
-import React from "react";
+import React from 'react';
 
 class AppSearch extends React.Component {
     constructor(props) {
@@ -7,21 +7,27 @@ class AppSearch extends React.Component {
         this.state = {
             keyword: '',
         };
+
         this.onSearch = this.onSearch.bind(this);
     }
 
-    onSearch(value) {
-        this.setState({keyword: value});
+    onSearch(e) {
+        const value = e.target.value;
+        this.setState({ keyword: value });
         this.props.onSearch(value);
     }
 
     render() {
         return (
-            <div className="note-search">
-                <input type="text" placeholder="Cari Catatan ..." value={this.state.keyword} 
-                onChange={(e) => this.onSearch(n.target.value)} />
+            <div className='note-search'>
+                <input
+                    type='text'
+                    placeholder='Cari catatan kamu ...'
+                    value={this.state.keyword}
+                    onChange={this.onSearch}
+                />
             </div>
-        )
+        );
     }
 }
 

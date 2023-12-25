@@ -16,18 +16,18 @@ class NoteApp extends React.Component {
         this.onSearch = this.onSearch.bind(this);
         this.onFilter = this.onFilter.bind(this);
         this.onDeleteNote = this.onDeleteNote.bind(this);
-        this.onAdd = this.onAdd.bind(this);
+        this.onAddNoteHandler = this.onAddNoteHandler.bind(this);
         this.onArchiveNote = this.onArchiveNote.bind(this);
     }
 
     onDeleteNote(id) {
         const notes = this.state.notes.filter((note) => note.id !==id);
-        const archived = this.state.archivedNotes.filter((note) => note.id !==id);
+        const archivedNotes = this.state.archivedNotes.filter((note) => note.id !==id);
 
-        this.setState({notes, archived})
+        this.setState({notes, archivedNotes})
     }
 
-    onAdd({ title, body, archived }) {
+    onAddNoteHandler({ title, body, archived }) {
         this.setState((prevState) => {
             const date = new Date().toISOString();
             return {
@@ -63,11 +63,12 @@ class NoteApp extends React.Component {
     }
 
     onSearch(value) {
-        this.setState({searchKeywords: value});
+        this.setState({ search: value });
     }
+    
 
-    onFilter(currNotes, searchKeywords) {
-        const notes = currNotes.filter((note) => {
+    onFilter(currentNotes, searchKeywords) {
+        const notes = currentNotes.filter((note) => {
             return note.title.toLowerCase().includes(searchKeywords.toLowerCase());
         });
         return notes;
@@ -78,10 +79,11 @@ class NoteApp extends React.Component {
         return (
             <>
 
-                <AppHeader value={this.state.searchKeywords} onSearch={this.onSearch}/>
+            <AppHeader value={this.state.searchKeywords} onSearch={this.onSearch}/>
+
 
                 <AppBody notes = {this.onFilter(notes, search)} onDelete={this.onDeleteNote} onArchive={this.onArchiveNote} 
-                        archivedNotes={this.onFilter(archivedNotes, search)} addNotes={this.onAdd} />
+                        archivedNotes={this.onFilter(archivedNotes, search)} addNotes={this.onAddNoteHandler} />
             </>
         )
     }

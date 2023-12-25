@@ -12,7 +12,7 @@ const AppItem = ({ title, createAt, body, id, isArchive, onDelete, onArchive }) 
             </div>
             <div className="note-item__action">
                 <BtDelete id={id} onDelete={onDelete}/>
-                <BtArchive id={id} onArchive={onArchive}>arsipkan</BtArchive>
+                <BtArchive id={id} onArchive={onArchive} isArchive={isArchive}></BtArchive>
             </div>
         </div>
     )

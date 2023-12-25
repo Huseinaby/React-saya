@@ -1,7 +1,7 @@
 import React from "react";
 import AppItem from "./appItem";
 
-const AppList = ({notes, onArchive, onDelete, path, isArchived }) => {
+const AppList = ({notes, onArchive, onDelete, path, isArchive}) => {
     return (
         <>
             <h2>{path}</h2>
@@ -11,7 +11,7 @@ const AppList = ({notes, onArchive, onDelete, path, isArchived }) => {
                 <div className="notes-list">
                     {notes.map((note) => (
                         <AppItem key={note.id} id={note.id} onArchive={onArchive} onDelete={onDelete} 
-                        isArchived={isArchived} {...note}/>
+                        isArchive={isArchive} {...note}/>
                     ))}
                 </div>
             )}
